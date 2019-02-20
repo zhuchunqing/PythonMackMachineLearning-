@@ -1,6 +1,7 @@
 import numpy as np 
 from math import sqrt
 from collections import Counter
+import metrics as metrics 
 class KNNClassifier:
     def __init__(self,k):
         "初始化KNN分类器"
@@ -35,6 +36,10 @@ class KNNClassifier:
         topK_y=[self._Y_train[i] for i in nearest[:self.k]]
         votes=Counter(topK_y)
         return votes.most_common(1)[0][0]
+    def score(self,X_test,y_test):
+        ttttt=self.predict(X_test)
+        return metrics.accuracy_score(y_test,ttttt)
+     
     def __repr__(self):
         return "KNN(k=%d)"%self.k
 
